@@ -36,12 +36,11 @@ class Game:
             else:
                 print("Invalid input. Please enter 1 or 0.")
         if user_input:
-            self.trials=0
             self.p1.reset()
             self.p2.reset()
-            self.loop()
+            return 1
         else:
-            pass
+            return 0
     
     def display_round_result(self):
         print(f"Player 1 score: {self.p1.get_score()}\nPlayer 2 score: {self.p2.get_score()}\n___________________________")
@@ -56,15 +55,18 @@ class Game:
             print("Draw")
         
     def loop(self):
-        while(self.trials<=4):
+        while(self.trials<4):
             self.p1.generate_num()
             self.p2.generate_num()
             self.play()
             self.display_round_result()
             time.sleep(1)
             self.trials+=1
-        self.display_winner()
-        self.restart()
+            if self.trials ==4:
+                self.display_winner()
+                if self.restart():
+                    self.trials=0
+        
 
     def play(self):
         if(self.p1.get_num() == self.p2.get_num() ):
