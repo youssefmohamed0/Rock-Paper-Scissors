@@ -1,5 +1,5 @@
     ###  بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ ###
-from game import *
+from utils import *
 
 p1=Player()
 p2=Player()
